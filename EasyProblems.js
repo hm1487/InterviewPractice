@@ -120,4 +120,76 @@ function findThreeLargestNumbers(array) {
       }
       return arr;
   }
-  
+
+/*
+Binary Search
+Implement Binary Search
+Have two pointers pointing at both the front and the back of the array
+Check on every iteration the size of the array, and cutting the array in half whenever necessary
+*/
+
+
+function binarySearch(array, target) {
+    var backPtr = array.length-1;
+    var frontPtr = 0;
+    var counter = 0;
+    while (frontPtr !== backPtr){
+        let mid = Math.floor((frontPtr + backPtr) / 2);
+        if (frontPtr + 1 === backPtr){
+            if (array[frontPtr] === target)
+                return frontPtr;
+            else if (array[backPtr] === target)
+                return backPtr;
+            else
+                return -1;
+        }
+        if (array[mid] > target){
+            backPtr = mid;
+        } else if (array[mid] < target){
+            frontPtr = mid;
+        } else if (array[mid] === target){
+            return mid;
+        }
+    }
+    return -1;
+}
+
+/*
+Implement selectionSort
+Iterate through an array swapping entries without creating another array and returning a sorted array
+*/
+
+function selectionSort(array) {
+    for (var x = 0; x < array.length; x++){
+          var lowest = null;
+          for (var y = x; y < array.length; y++){
+              if (lowest === null){
+                  lowest = y;
+              } else if (array[lowest] > array[y]){
+                  lowest = y;
+              }
+          }
+          if (lowest !== x){
+              let temp = array[x];
+              array[x] = array[lowest];
+              array[lowest] = temp;
+          }
+      }
+      return array;
+  }
+
+/*
+Palindrome Checker
+Cut the string in half, reverse one of them and check if they are equivalent
+*/
+
+function isPalindrome(string) {
+    var half = Math.floor(string.length/2);
+    var iter = string.length-1
+    for (var x = 0; x < half; x++){
+        if (string[x] !== string[iter])
+            return false;
+        iter-=1
+    }
+    return true;
+}
