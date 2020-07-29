@@ -81,4 +81,58 @@ function smallestDifference(arrayOne, arrayTwo) {
    return array;
 }
 
+/*
+Move Element to the End
+Given an array, and an integer to move, move every instance of that integer to the back of that array
+Iterate through the array, everytime an instance of that int is seen, remove it from the array, keeping count of how many times this is done
+After the iteration, append that integer that many times to the back
+*/
 
+function moveElementToEnd(array, toMove) {
+	let counter = 0
+	  for (let x = 0; x < array.length; x++){
+		  if (array[x] === toMove){
+			  array.splice(x,1);
+			  x--;
+			  counter+=1
+		  }
+	  }
+	  for (let x = 0; x < counter; x++){
+		  array.push(toMove);
+	  }
+	  return array
+  }
+
+/*
+Monotonic Array
+Returns true if all of the numbers are either increasing in order, or decreasing in order
+Otherwise, will return false
+*/
+
+function isMonotonic(array) {
+	let falling = true;
+	  let equal = null;
+	  for (let x = 0; x < array.length; x++){
+		  if (x+1 < array.length){
+			  if (x === 0 || equal === true){
+				  if (array[x+1] > array[x]){
+					  falling = false;
+					  equal = false;
+				  } else if (array[x] === array[x+1]){
+					  equal = true;
+				  } else {
+					  equal = false;
+				  }
+			  }
+		  }
+		  if (array[x+1] > array[x] && falling){
+			  console.log("flag1");
+			  return false;
+		  } else if (array[x] > array[x+1] && !falling){
+			  console.log("flag2");
+			  return false;
+		  }
+	  }
+	  return true;
+}
+  
