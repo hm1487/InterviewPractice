@@ -13,11 +13,11 @@ class BinaryTree {
 Binary Tree Branch Sum
 In an array, return the sum of all the branches within a BST
 Try to go with a recursive approach
-The helper function is required as there needs to be someway to track variables
+The helper function is required as there needs to be someway to track letiables
 Having just the sum function will not suffice
 */
 function branchSums(root) {
-var arr = [];
+    const arr = [];
     helper(root, arr, 0)
     return arr;
 }
@@ -55,18 +55,18 @@ class Node {
     }
 
     depthFirstSearch(array) {
-        var queue = [this];
-            var retArr = [];
-            while(queue.length != 0){
-                
-                var currNode = queue.shift();
-                retArr.push(currNode.name);
-                queue = currNode.children.concat(queue);
-                console.log(queue);
-            }
-            return retArr
+        let queue = [this];
+        let retArr = [];
+        while(queue.length != 0){
             
+            let currNode = queue.shift();
+            retArr.push(currNode.name);
+            queue = currNode.children.concat(queue);
+            console.log(queue);
         }
+        return retArr
+            
+    }
 
 }
 
@@ -80,7 +80,7 @@ For the sub arrays, the sum of that array is the sum of the numbers * the depth
 
 function productSum(array, multiplyer = 1) {
 	let sum = 0;
-	for (var x = 0; x < array.length; x++){
+	for (let x = 0; x < array.length; x++){
 		if (Array.isArray(array[x])){
 			sum += productSum(array[x],multiplyer+1)
 		} else {
@@ -102,22 +102,22 @@ Actually fairly easy when you wrap your head around it
 
 
 function findThreeLargestNumbers(array) {
-    var arr = ["","",""]
-      for (var entry of array){
-          if (arr[2] == "" || entry > arr[2]){
-              let temp = arr[2];
-              arr[2] = entry;
-              let temp1 = arr[1];
-              arr[1] = temp;
-              arr[0] = temp1;	
-          } else if (entry > arr[1] || arr[1] == ""){
-              let temp = arr[1];
-              arr[1] = entry;
-              arr[0] = temp;
-          } else if (entry > arr[0] || arr[0] == ""){
-              arr[0] = entry;
-          }
-      }
+    const arr = ["","",""]
+    for (let entry of array){
+        if (arr[2] == "" || entry > arr[2]){
+            let temp = arr[2];
+            arr[2] = entry;
+            let temp1 = arr[1];
+            arr[1] = temp;
+            arr[0] = temp1;	
+        } else if (entry > arr[1] || arr[1] == ""){
+            let temp = arr[1];
+            arr[1] = entry;
+            arr[0] = temp;
+        } else if (entry > arr[0] || arr[0] == ""){
+            arr[0] = entry;
+        }
+    }
       return arr;
   }
 
@@ -130,9 +130,9 @@ Check on every iteration the size of the array, and cutting the array in half wh
 
 
 function binarySearch(array, target) {
-    var backPtr = array.length-1;
-    var frontPtr = 0;
-    var counter = 0;
+    let backPtr = array.length-1;
+    let frontPtr = 0;
+    let counter = 0;
     while (frontPtr !== backPtr){
         let mid = Math.floor((frontPtr + backPtr) / 2);
         if (frontPtr + 1 === backPtr){
@@ -160,9 +160,9 @@ Iterate through an array swapping entries without creating another array and ret
 */
 
 function selectionSort(array) {
-    for (var x = 0; x < array.length; x++){
-          var lowest = null;
-          for (var y = x; y < array.length; y++){
+    for (let x = 0; x < array.length; x++){
+          let lowest = null;
+          for (let y = x; y < array.length; y++){
               if (lowest === null){
                   lowest = y;
               } else if (array[lowest] > array[y]){
@@ -184,9 +184,9 @@ Cut the string in half, reverse one of them and check if they are equivalent
 */
 
 function isPalindrome(string) {
-    var half = Math.floor(string.length/2);
-    var iter = string.length-1
-    for (var x = 0; x < half; x++){
+    let half = Math.floor(string.length/2);
+    let iter = string.length-1
+    for (let x = 0; x < half; x++){
         if (string[x] !== string[iter])
             return false;
         iter-=1
